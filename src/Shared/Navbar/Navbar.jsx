@@ -15,7 +15,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-        to="/signup"
+        to="/register"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "text-[#F7FF00]" : "text-white"
         }
@@ -23,7 +23,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-        to="/signup"
+        to="/login"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "text-[#F7FF00]" : "text-white"
         }

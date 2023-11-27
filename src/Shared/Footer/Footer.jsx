@@ -11,7 +11,7 @@ const Footer = () => {
               <div className="flex-1 px-2 mx-2 font-rapid text-[#F7FF00] text-4xl font-semibold">
                 Rapid<span className="text-[#fff]">Rush</span>
               </div>
-              <p className="my-4 text-xs leading-normal text-gray-600">
+              <p className="my-4 text-xs leading-normal text-white">
                 Hosted in the EU 🇪🇺, with <strong>no user tracking</strong>{" "}
                 scripts. Made all over the world by{" "}
                 <a href="#" className="underline" target="_blank">
@@ -21,59 +21,59 @@ const Footer = () => {
               </p>
             </div>
             <nav className="col-span-1 md:col-span-1 lg:col-span-2">
-              <p className="mb-3 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+              <p className="mb-3 text-xs font-semibold tracking-wider text-[#F7FF00] uppercase">
                 Product
               </p>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Features
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Pricing
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Feedback
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 FAQs
               </a>
             </nav>
             <nav className="col-span-2 md:col-span-1 lg:col-span-2">
-              <p className="mb-3 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+              <p className="mb-3 text-xs font-semibold tracking-wider text-[#F7FF00] uppercase">
                 Support
               </p>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Chat
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 {" "}
                 Email Support{" "}
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 GDPR
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 {" "}
@@ -81,59 +81,59 @@ const Footer = () => {
               </a>
             </nav>
             <nav className="col-span-1 md:col-span-1 lg:col-span-2">
-              <p className="mb-3 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+              <p className="mb-3 text-xs font-semibold tracking-wider text-[#F7FF00] uppercase">
                 Resources
               </p>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Blog
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 {" "}
                 Twitter{" "}
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Alternatives
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Why feature vote?
               </a>
             </nav>
             <nav className="col-span-1 md:col-span-1 lg:col-span-2">
-              <p className="mb-3 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+              <p className="mb-3 text-xs font-semibold tracking-wider text-[#F7FF00] uppercase">
                 Company
               </p>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 About Us
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Privacy
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Terms
               </a>
               <a
-                className="flex mb-3 text-sm font-medium text-gray-800 transition md:mb-2 hover:text-purple-800"
+                className="flex mb-3 text-sm font-medium text-white transition md:mb-2 hover:text-purple-800"
                 href="#"
               >
                 Status
@@ -141,10 +141,10 @@ const Footer = () => {
             </nav>
           </div>
           <div className="flex flex-col items-start justify-between pt-10 mt-10 border-t border-gray-100 md:flex-row md:items-center">
-            <p className="mb-2 text-xs text-left text-gray-600 md:mb-0">
+            <p className="mb-2 text-xs text-left text-white md:mb-0">
               Built by Product Managers, for Product Managers.
             </p>
-            <p className="mb-0 text-xs text-left text-gray-600 md:mb-0">
+            <p className="mb-0 text-xs text-left text-white md:mb-0">
               Copyright &copy; 2020 Hellonext
             </p>
           </div>
