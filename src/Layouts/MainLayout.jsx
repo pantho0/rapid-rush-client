@@ -1,10 +1,11 @@
 import React from 'react';
+import Navbar from '../Shared/Navbar/Navbar';
 
 const MainLayout = () => {
     return (
-        <div>
-            This is main layout
-        </div>
+        <>
+            <Navbar></Navbar>
+        </>
     );
 };
 
