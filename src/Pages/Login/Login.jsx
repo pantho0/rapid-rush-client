@@ -1,8 +1,12 @@
 import Lottie from "lottie-react";
-import animationData from "../../../public/Animation - 1701096524891.json"
+import animationData from "../../assets/Animation - 1701096524891.json"
+import { Helmet } from "react-helmet-async";
 const Login = () => {
   return (
     <div>
+      <Helmet>
+        <title>RapidRush | Login</title>
+      </Helmet>
       <section class="grid grid-cols-1 gap-0 lg:grid-cols-12">
         <div class="w-full col-span-1 mx-auto mt-10 lg:col-span-6 md:w-2/4">
           <div className="flex-1  font-rapid text-[#F7FF00] bg-[#3b0032] text-center p-4 text-4xl font-semibold">
@@ -40,7 +44,7 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary text-white bg-[#3b0032] border-none hover:bg-[#3b0032d8] hover:text-[#F7FF00]">Login</button>
             </div>
           </form>
           <div class="my-6 space-y-2">
