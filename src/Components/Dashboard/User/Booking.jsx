@@ -6,7 +6,7 @@ const Booking = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure()
 
-  const handleBooking = async(e) => {
+  const handleBooking = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
