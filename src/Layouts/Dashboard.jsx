@@ -16,8 +16,10 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar></Navbar>
-        <UserDashboard>
+       <div className="min-h-screen">
+       <UserDashboard>
         </UserDashboard>
+       </div>
       <Footer></Footer>
     </div>
   );

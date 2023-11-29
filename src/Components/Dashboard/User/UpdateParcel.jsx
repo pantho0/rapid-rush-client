@@ -1,13 +1,15 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateParcel = () => {
-    const parcel = useLoaderData()
-    console.log(parcel);
-    const { user } = useAuth();
-  const axiosSecure = useAxiosSecure()
+  const parcel = useLoaderData();
+  console.log(parcel);
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate()
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const UpdateParcel = () => {
     const type = form.type.value;
     const receiverName = form.receiverName.value;
     const weight = parseInt(form.weight.value);
-    function calculatePrice(weight){
+    function calculatePrice(weight) {
       if (weight === 1) {
         return 50;
       } else if (weight === 2) {
@@ -40,7 +42,9 @@ const UpdateParcel = () => {
     const status = "pending";
     const currentDate = new Date();
     const approxDelivery = new Date();
-    const newApprox = new Date (approxDelivery.setDate(currentDate.getDate() + 3))
+    const newApprox = new Date(
+      approxDelivery.setDate(currentDate.getDate() + 3)
+    );
 
     const bookingData = {
       name,
@@ -59,18 +63,25 @@ const UpdateParcel = () => {
       deliveryManId,
       status,
       approxDelivery,
-      newApprox
+      newApprox,
     };
     console.log(bookingData);
 
-    axiosSecure.put(`/update/${parcel?.data?._id}`,bookingData)
-    .then(res=> {
-      console.log(res.data);
-    })
-
+    axiosSecure.put(`/update/${parcel?.data?._id}`, bookingData).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Booking Updated.Pay to confirm order",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        navigate('/dashboard/mybooking')
+      }
+    });
   };
-    return (
-        <div>
+  return (
+    <div>
       <Helmet>
         <title>RapidRush || Bookings</title>
       </Helmet>
@@ -257,7 +268,7 @@ const UpdateParcel = () => {
         </div>
       </form>
     </div>
-    );
+  );
 };
 
 export default UpdateParcel;

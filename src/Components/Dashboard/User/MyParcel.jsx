@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import Booking from "./Booking";
 import UpdateParcel from "./UpdateParcel";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyParcel = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,12 +20,32 @@ const MyParcel = () => {
 
   const handleCancel = (id) => {
     console.log("got the id", id);
-    axiosSecure.delete(`/delete/${id}`).then((res) => {
-      console.log(res.data);
-      if(res.data.deletedCount > 0){
-        refetch()
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/delete/${id}`).then((res) => {
+          console.log(res.data);
+          
+          if(res.data.deletedCount > 0){
+            refetch()
+            
+          }
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your booking has been deleted.",
+          icon: "success"
+        });
       }
     });
+    
   };
   return (
     <div>

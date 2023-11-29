@@ -1,10 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 const Booking = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate()
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -62,7 +64,16 @@ const Booking = () => {
     axiosSecure.post('/parcels',bookingData)
     .then(res=> {
       console.log(res.data);
-    })
+      if(res.data.acknowledged){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Booking Reserved. Pay to confirm your booking",
+          showConfirmButton: false,
+          timer: 2000
+        });
+        navigate("/dashboard/mybooking")
+    }})
 
 
 

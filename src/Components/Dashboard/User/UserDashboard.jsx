@@ -7,7 +7,7 @@ const UserDashboard = () => {
       <Helmet>
         <title>RapidRush | USER DASHBOARD</title>
       </Helmet>
-      <div className="grid grid-cols-12 ">
+      <div className="grid grid-cols-12 min-h-screen">
         <div className="col-span-2 bg-[#3b0032ea]">
           <ul className="menu w-full text-white">
             <li>
