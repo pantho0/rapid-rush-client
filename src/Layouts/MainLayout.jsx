@@ -9,9 +9,10 @@ const MainLayout = () => {
   const { loading } = useContext(authContext);
   if (loading) {
     return (
-        <div className="min-h-screen flex justify-center items-center">
-            <ImSpinner9 className="animate-spin text-6xl text-[#3b0032]" />
-        </div>
+      <div className="min-h-screen flex justify-center items-center">
+          <ImSpinner9 className="animate-spin text-6xl text-[#3b0032]" />
+      </div>
+
     );
   }
   return (
