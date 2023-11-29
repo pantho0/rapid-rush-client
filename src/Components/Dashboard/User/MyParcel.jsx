@@ -2,8 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
-import Booking from "./Booking";
-import UpdateParcel from "./UpdateParcel";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 

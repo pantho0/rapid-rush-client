@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllParcels = () => {
@@ -17,6 +16,9 @@ const AllParcels = () => {
     },
   });
 
+  const manageBookigs = (id) =>{
+    console.log('got the id',id);
+  }
   
     return (
         <div>
@@ -52,7 +54,7 @@ const AllParcels = () => {
                 <td className="text-right text-[#3b0032] text-sm bg-gray-200">{parcel?.price}</td>
                 <td className="text-right text-[#3b0032] text-sm bg-gray-300">{parcel?.status}</td>
                 <td className="bg-gray-200">
-                  <button className="btn btn-xs mr-1">
+                  <button onClick={()=>manageBookigs(parcel._id)} className="btn btn-xs mr-1">
                     Manage
                   </button>
                 </td>

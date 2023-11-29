@@ -12,6 +12,7 @@ import useAxiosSecure from "../Components/Hooks/useAxiosSecure";
 import PrivateRoute from "./Private/PrivateRoute";
 import Profile from "../Pages/Profile/Profile";
 import AllParcels from "../Components/Dashboard/User/AllParcels";
+import AllUser from "../Components/Dashboard/User/AllUser";
 
 const axiosSecure = useAxiosSecure()
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
         {
           path : "allParcels",
           element: <AllParcels></AllParcels>
+        },
+        {
+          path : "allUsers",
+          element : <AllUser></AllUser>
         }
       ]
     }
