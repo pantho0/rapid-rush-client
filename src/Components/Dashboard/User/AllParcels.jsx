@@ -12,95 +12,48 @@ const AllParcels = () => {
     queryKey: ["parcels"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/bookings`);
+        refetch()
         return res.data;
     },
   });
 
-  const handleCancel = (id) => {
-    console.log("got the id", id);
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.delete(`/delete/${id}`).then((res) => {
-          console.log(res.data);
-          
-          if(res.data.deletedCount > 0){
-            refetch()
-            
-          }
-        });
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your booking has been deleted.",
-          icon: "success"
-        });
-      }
-    });
-    
-  };
+  
     return (
         <div>
       <Helmet>
-        <title>RapidRush || My Percels</title>
+        <title>RapidRush || ADMIN </title>
       </Helmet>
       <h1 className="text-[#3b0032] text-4xl text-center mt-6 mb-6">
-        My Bookings
+        Manage Bookings
       </h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
             <tr className="text-[10px]">
-              <th></th>
-              <th>Parcel Type</th>
-              <th>Requested Delivery Date</th>
-              <th>Approximate Delivery Date</th>
+              <th>#</th>
+              <th>User’s Name</th>
+              <th>User’s Phone</th>
               <th>Booking Date</th>
-              <th>Delivery Men ID</th>
-              <th>Booking Status</th>
+              <th>Requested Delivery Date</th>
+              <th>Cost</th>
+              <th>Status</th>
               <th>Action</th>
-              <th>Payment</th>
             </tr>
           </thead>
-          <tbody className="text-[11px]">
+          <tbody className="text-[11px] font-bold">
             {parcels?.map((parcel, idx) => (
               <tr key={parcel._id}>
-                <th>{idx + 1}</th>
-                <td>{parcel?.type.toUpperCase()}</td>
-                <td>{parcel?.requestedTime}</td>
-                <td>{parcel?.approxDelivery.split("T")[0]}</td>
-                <td>{parcel?.bookingDate.split("T")[0]}</td>
-                <td>{parcel?.deliveryManId}</td>
-                <td>{parcel?.status.toUpperCase()}</td>
-                <td>
-                  {parcel?.status === "pending" ? (
-                    <div>
-                      <Link to={`/dashboard/update/${parcel?._id}`}>
-                        <button className="btn btn-xs">Update</button>
-                      </Link>
-                      <button
-                        onClick={() => handleCancel(parcel?._id)}
-                        className="btn btn-xs"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  ) : (
-                    <div>
-                      <button className="btn btn-xs mr-1">Review</button>
-                    </div>
-                  )}
-                </td>
-                <td>
+                <th className="bg-gray-300">{idx + 1}</th>
+                <td className="bg-gray-200" >{parcel?.name.toUpperCase()}</td>
+                <td className="bg-gray-300">{parcel?.phone}</td>
+                <td className="bg-gray-200">{parcel?.bookingDate.split("T")[0]}</td>
+                <td className="text-[#3b0032] text-center bg-gray-300">{parcel?.requestedTime}</td>
+                <td className="text-right text-[#3b0032] text-sm bg-gray-200">{parcel?.price}</td>
+                <td className="text-right text-[#3b0032] text-sm bg-gray-300">{parcel?.status}</td>
+                <td className="bg-gray-200">
                   <button className="btn btn-xs mr-1">
-                    Pay ${parcel?.price}
+                    Manage
                   </button>
                 </td>
               </tr>

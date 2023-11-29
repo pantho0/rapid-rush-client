@@ -5,7 +5,7 @@ const AdminDashboard = () => {
   return (
     <div>
       <Helmet>
-        <title>RapidRush | Admin DASHBOARD</title>
+        <title>RapidRush | DASHBOARD</title>
       </Helmet>
       <div className="grid grid-cols-12 min-h-screen">
         <div className="col-span-2 bg-[#3b0032ea]">
