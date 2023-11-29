@@ -2,18 +2,16 @@ import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
-import Booking from "./Booking";
-import UpdateParcel from "./UpdateParcel";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const MyParcel = () => {
-  const axiosSecure = useAxiosSecure();
+const AllParcels = () => {
+    const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { refetch, data: parcels, } = useQuery({
     queryKey: ["parcels"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/bookings?email=${user.email}`);
+      const res = await axiosSecure.get(`/bookings`);
         return res.data;
     },
   });
@@ -47,8 +45,8 @@ const MyParcel = () => {
     });
     
   };
-  return (
-    <div>
+    return (
+        <div>
       <Helmet>
         <title>RapidRush || My Percels</title>
       </Helmet>
@@ -112,7 +110,7 @@ const MyParcel = () => {
         </table>
       </div>
     </div>
-  );
+    );
 };
 
-export default MyParcel;
+export default AllParcels;

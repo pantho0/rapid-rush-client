@@ -1,14 +1,27 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { authContext } from "../../Provider/AuthProvider/AuthProvider";
+import useAxiosPublic from "../../Components/Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const {googleLogin} = useContext(authContext)
-
+  const axiosPublic = useAxiosPublic()
+  const navigate = useNavigate()
   const handleGoolge = () =>{
     googleLogin()
     .then(res=>{
       console.log(res);
+      const userInfo = {
+        name : res.user.displayName,
+        email : res.user.email,
+        role : "user"
+      }
+      axiosPublic.post("/users", userInfo)
+      .then(res=>{
+        console.log(res.data);
+        navigate("/dashboard/profile")
+      })
     })
     .catch((error)=>
       console.log(error)

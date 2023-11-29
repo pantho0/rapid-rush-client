@@ -58,7 +58,7 @@ const Navbar = () => {
             <span className="badge">Admin</span>
           </button>
         </li>
-        <li><Link to={'/dashboard'}>Dashboard</Link></li>
+        <li><Link to={'/dashboard/profile'}>Dashboard</Link></li>
         <li ><button onClick={handleLogout}>Logout</button></li>
       </ul>
     </div>
