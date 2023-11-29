@@ -9,14 +9,23 @@ import { Link } from "react-router-dom";
 const MyParcel = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: parcels, refetch } = useQuery({
+  const { refetch, data: parcels, } = useQuery({
     queryKey: ["parcels"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/bookings?email=${user.email}`);
-      return res.data;
+        return res.data;
     },
   });
-  console.log(parcels);
+
+  const handleCancel = (id) => {
+    console.log("got the id", id);
+    axiosSecure.delete(`/delete/${id}`).then((res) => {
+      console.log(res.data);
+      if(res.data.deletedCount > 0){
+        refetch()
+      }
+    });
+  };
   return (
     <div>
       <Helmet>
@@ -54,10 +63,15 @@ const MyParcel = () => {
                 <td>
                   {parcel?.status === "pending" ? (
                     <div>
-                     <Link to={`/dashboard/update/${parcel?._id}`}>
-                     <button className="btn btn-xs">Update</button>
-                     </Link>
-                      <button className="btn btn-xs">Cancel</button>
+                      <Link to={`/dashboard/update/${parcel?._id}`}>
+                        <button className="btn btn-xs">Update</button>
+                      </Link>
+                      <button
+                        onClick={() => handleCancel(parcel?._id)}
+                        className="btn btn-xs"
+                      >
+                        Cancel
+                      </button>
                     </div>
                   ) : (
                     <div>
