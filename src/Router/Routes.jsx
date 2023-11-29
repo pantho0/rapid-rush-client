@@ -9,6 +9,7 @@ import Booking from "../Components/Dashboard/User/Booking";
 import MyParcel from "../Components/Dashboard/User/MyParcel";
 import UpdateParcel from "../Components/Dashboard/User/UpdateParcel";
 import useAxiosSecure from "../Components/Hooks/useAxiosSecure";
+import PrivateRoute from "./Private/PrivateRoute";
 
 const axiosSecure = useAxiosSecure()
 
@@ -35,19 +36,19 @@ const router = createBrowserRouter([
     },
     {
       path: "/dashboard",
-      element : <Dashboard></Dashboard>,
+      element : <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children : [
         {
           path : "booking",
-          element: <Booking></Booking>
+          element: <PrivateRoute><Booking></Booking></PrivateRoute>
         },
         {
           path : "mybooking",
-          element : <MyParcel></MyParcel>
+          element : <PrivateRoute> <MyParcel></MyParcel></PrivateRoute>
         },
         {
           path : "update/:id",
-          element : <UpdateParcel></UpdateParcel>,
+          element : <PrivateRoute><UpdateParcel></UpdateParcel></PrivateRoute>,
           loader : ({params}) => axiosSecure.get(`/update/${params.id}`)
         }
       ]
