@@ -1,15 +1,20 @@
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import Booking from "./Booking";
+import UpdateParcel from "./UpdateParcel";
+import { Link } from "react-router-dom";
 
 const MyParcel = () => {
-  const axiosSecure = useAxiosSecure()
-  const {data:parcels, refetch} = useQuery({
-    queryKey : ['parcels'],
-    queryFn: async() => {
-      const res = await axiosSecure.get("/bookings");
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const { data: parcels, refetch } = useQuery({
+    queryKey: ["parcels"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/bookings?email=${user.email}`);
       return res.data;
-    }
+    },
   });
   console.log(parcels);
   return (
@@ -37,36 +42,37 @@ const MyParcel = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              parcels?.map((parcel, idx) => <tr key={parcel._id}>
-                <th>{idx+1}</th>
+            {parcels?.map((parcel, idx) => (
+              <tr key={parcel._id}>
+                <th>{idx + 1}</th>
                 <td>{parcel?.type.toUpperCase()}</td>
                 <td>{parcel?.requestedTime}</td>
-                <td>{parcel?.approxDelivery.split('T')[0]}</td>
-                <td>{parcel?.bookingDate.split('T')[0]}</td>
+                <td>{parcel?.approxDelivery.split("T")[0]}</td>
+                <td>{parcel?.bookingDate.split("T")[0]}</td>
                 <td>{parcel?.deliveryManId}</td>
                 <td>{parcel?.status.toUpperCase()}</td>
                 <td>
-                {parcel?.status === 'pending' ? (
-                   <div>
-                    <button className="btn btn-xs mr-1">Update</button>
-                   <button className="btn btn-xs">Cancel</button>
-                   </div>
-                )
-                :
-                (
-                  <div>
-                  <button className="btn btn-xs mr-1">Review</button>
-                 </div>
-                )
-              
-                }
+                  {parcel?.status === "pending" ? (
+                    <div>
+                     <Link to={`/dashboard/update/${parcel?._id}`}>
+                     <button className="btn btn-xs">Update</button>
+                     </Link>
+                      <button className="btn btn-xs">Cancel</button>
+                    </div>
+                  ) : (
+                    <div>
+                      <button className="btn btn-xs mr-1">Review</button>
+                    </div>
+                  )}
                 </td>
-                <td><button className="btn btn-xs mr-1">Pay</button></td>
-              </tr>)
-            }
+                <td>
+                  <button className="btn btn-xs mr-1">
+                    Pay ${parcel?.price}
+                  </button>
+                </td>
+              </tr>
+            ))}
             {/* row 1 */}
-            
           </tbody>
         </table>
       </div>

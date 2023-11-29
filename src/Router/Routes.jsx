@@ -7,6 +7,10 @@ import Login from "../Pages/Login/Login";
 import Dashboard from "../Layouts/Dashboard";
 import Booking from "../Components/Dashboard/User/Booking";
 import MyParcel from "../Components/Dashboard/User/MyParcel";
+import UpdateParcel from "../Components/Dashboard/User/UpdateParcel";
+import useAxiosSecure from "../Components/Hooks/useAxiosSecure";
+
+const axiosSecure = useAxiosSecure()
 
 const router = createBrowserRouter([
     {
@@ -25,7 +29,7 @@ const router = createBrowserRouter([
         {
           path : "/login",
           element: <Login></Login>
-        }
+        },
     
       ]
     },
@@ -40,6 +44,11 @@ const router = createBrowserRouter([
         {
           path : "mybooking",
           element : <MyParcel></MyParcel>
+        },
+        {
+          path : "update/:id",
+          element : <UpdateParcel></UpdateParcel>,
+          loader : ({params}) => axiosSecure.get(`/update/${params.id}`)
         }
       ]
     }
