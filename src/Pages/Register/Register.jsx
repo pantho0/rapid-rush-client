@@ -38,17 +38,16 @@ const Register = () => {
     console.log(email, password);
     createUser(email, password)
     .then(res=>{
-      updateUserProfile(name,photo)
-      .then(res=>{
+      updateUserProfile(name, photo)
+      .then(res =>{
         console.log(res);
       })
       .catch(error=>{
         console.log(error);
       })
-      console.log(res.user);
       const userInfo = {
-        name : res.user.displayName,
-        email : res.user.email,
+        name : name,
+        email : email,
         role : "user"
       }
       axiosPublic.post("/users", userInfo)
@@ -59,6 +58,9 @@ const Register = () => {
     })
     .catch((error)=>{
       console.log(error.message);
+      if(error){
+        navigate('/')
+      }
     })
   }
 

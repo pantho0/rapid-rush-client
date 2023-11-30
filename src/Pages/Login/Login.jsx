@@ -1,7 +1,25 @@
 import Lottie from "lottie-react";
 import animationData from "../../assets/Animation - 1701096524891.json"
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../Components/Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const {loginUser} = useAuth();
+  const navigate = useNavigate()
+  const login = (e) =>{
+    e.preventDefault()
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email, password)
+    .then(res=>{
+      console.log(res);
+      navigate('/dashboard/profile')
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
   return (
     <div>
       <Helmet>
@@ -15,7 +33,7 @@ const Login = () => {
             <h1 class="font-ubuntu mt-6 mb-4 text-xl font-bold text-[#3b0032] text-center">
                 Log in to your account
             </h1>
-          <form className="card-body">
+          <form onSubmit={login} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -23,6 +41,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="email"
+                name="email"
                 className="input input-bordered"
                 required
               />
@@ -33,6 +52,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
