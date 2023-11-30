@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { authContext } from "../../Provider/AuthProvider/AuthProvider";
 import useAxiosPublic from "../../Components/Hooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const {googleLogin} = useContext(authContext)
+  const {googleLogin, createUser, updateUserProfile} = useContext(authContext)
   const axiosPublic = useAxiosPublic()
   const navigate = useNavigate()
   const handleGoolge = () =>{
@@ -26,6 +26,40 @@ const Register = () => {
     .catch((error)=>
       console.log(error)
       )
+  }
+
+  const userCreate = (e) =>{
+    e.preventDefault()
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    createUser(email, password)
+    .then(res=>{
+      updateUserProfile(name,photo)
+      .then(res=>{
+        console.log(res);
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+      console.log(res.user);
+      const userInfo = {
+        name : res.user.displayName,
+        email : res.user.email,
+        role : "user"
+      }
+      axiosPublic.post("/users", userInfo)
+      .then(res=>{
+        console.log(res.data);
+        navigate("/dashboard/profile")
+      })
+    })
+    .catch((error)=>{
+      console.log(error.message);
+    })
   }
 
   return (
@@ -73,31 +107,45 @@ const Register = () => {
               </span>
             </div>
           </div>
-          <form className="card-body">
+          <form onSubmit={userCreate} className="card-body">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input type="text" name="name" placeholder="Your Name" className="input input-bordered" required />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Photo Url</span>
+          </label>
+          <input type="text" name="photo" placeholder="Your Image URL" className="input input-bordered" required />
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" placeholder="email" className="input input-bordered" required />
+          <input type="email" name="email" placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered" required />
+          <input type="password" name="password" placeholder="password" className="input input-bordered" required />
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary">Sign Up</button>
         </div>
       </form>
           <div className="pt-6 mt-6 text-sm font-medium text-[#3b0032] border-t border-gray-200">
             Already have an account?
-            <a href="#" className="text-[#0d3013] underline ml-1 hover:text-purple-900">
+            <Link to={'/login'}>
+            <span href="#" className="text-[#0d3013] underline ml-1 hover:text-purple-900">
               Sign in
-            </a>
+            </span>
+            </Link>
           </div>
         </div>
         <div className="px-4 py-20 space-y-10 bg-[#3b0032ea] xl:py-32 md:px-40 lg:px-20 xl:px-40">
