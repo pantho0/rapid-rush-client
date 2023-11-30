@@ -17,12 +17,14 @@ import DeliveryList from "../Components/Dashboard/User/DeliveryList";
 import Reviews from "../Components/Dashboard/User/Reviews";
 import AssignDeliveryMan from "../Components/Dashboard/AssignDeliveryMan";
 import useAuth from "../Components/Hooks/useAuth";
+import Error from "../Pages/Erro404/Error";
 
 const axiosSecure = useAxiosSecure()
 const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement:<Error></Error>, 
       children : [
         {
           path: "/",
