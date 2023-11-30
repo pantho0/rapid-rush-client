@@ -5,6 +5,7 @@ import { ImSpinner9 } from "react-icons/im";
 import UserDashboard from "../Components/Dashboard/User/UserDashboard";
 import useRole from "../Components/Hooks/useRole";
 import AdminDashboard from "../Components/Dashboard/User/AdminDashboard";
+import DeliveryManDashboard from "../Components/Dashboard/User/DeliveryManDashboard";
 
 const Dashboard = () => {
   const { loading } = useAuth();
@@ -29,7 +30,7 @@ const Dashboard = () => {
           <AdminDashboard></AdminDashboard>
         )}
         {loggedUserRole && loggedUserRole === "dBoy" && (
-          <UserDashboard></UserDashboard>
+          <DeliveryManDashboard></DeliveryManDashboard>
         )}
       </div>
       <Footer></Footer>

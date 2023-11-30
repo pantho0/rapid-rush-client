@@ -12,6 +12,27 @@ const AllUser = () => {
     },
   });
 
+  const makeAdmin = (id) => {
+    axiosSecure.patch(`/user/makeAdmin/${id}`).then((res) => {
+      console.log(res.data);
+    });
+  };
+
+  const makeUser = (id) => {
+    console.log(id);
+    axiosSecure.patch(`/user/makeUser/${id}`).then((res) => {
+      console.log(res.data);
+    });
+  };
+
+  const makeDboy = (id) => {
+    console.log(id);
+    axiosSecure.patch(`/user/makedBoy/${id}`)
+    .then(res=>{
+      console.log(res.data);
+    })
+  }
+
   return (
     <div>
       <h2 className="text-center text-3xl mt-4 text-[#3b0032]">All users</h2>
@@ -44,7 +65,9 @@ const AllUser = () => {
                     </div>
                   </td>
                   <td>
-                    {user && user.phoneNumber ? user.phoneNumber : "Not Found"}
+                    {user && user?.phoneNumber
+                      ? user?.phoneNumber
+                      : "Not Found"}
                   </td>
                   <td>
                     {user && user.totalBooking
@@ -58,33 +81,41 @@ const AllUser = () => {
                   <td>
                     {user && (
                       <>
-                        {user.role === "admin" && (
-                          <>
-                            <button className="btn btn-ghost btn-xs">
+                        {
+                          user.role === "admin" &&(
+                            <>
+                            <button
+                              onClick={() =>makeUser(user?._id)}
+                              className="btn btn-ghost btn-xs"
+                            >
                               Make User
                             </button>
-                            <button className="btn btn-ghost btn-xs">
-                              Delivery Boy
-                            </button>
-                          </>
-                        )}
+                            </>
+                          )
+                        }
                         {user.role === "user" && (
                           <>
-                            <button className="btn btn-ghost btn-xs">
+                            <button
+                              onClick={() => makeAdmin(user?._id)}
+                              className="btn btn-ghost btn-xs"
+                            >
                               Make Admin
                             </button>
-                            <button className="btn btn-ghost btn-xs">
-                            Delivery Boy
+                            <button onClick={()=>makeDboy(user?._id)} className="btn btn-ghost btn-xs">
+                              Delivery Boy
                             </button>
                           </>
                         )}
                         {user.role === "dBoy" && (
                           <>
                             <button className="btn btn-ghost btn-xs">
-                            Make Admin
+                              Make Admin
                             </button>
-                            <button className="btn btn-ghost btn-xs">
-                            Make User
+                            <button
+                              onClick={() =>makeUser(user?._id)}
+                              className="btn btn-ghost btn-xs"
+                            >
+                              Make User
                             </button>
                           </>
                         )}

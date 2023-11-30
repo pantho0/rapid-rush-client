@@ -13,6 +13,9 @@ import PrivateRoute from "./Private/PrivateRoute";
 import Profile from "../Pages/Profile/Profile";
 import AllParcels from "../Components/Dashboard/User/AllParcels";
 import AllUser from "../Components/Dashboard/User/AllUser";
+import DeliveryList from "../Components/Dashboard/User/DeliveryList";
+import Reviews from "../Components/Dashboard/User/Reviews";
+import AssignDeliveryMan from "../Components/Dashboard/AssignDeliveryMan";
 
 const axiosSecure = useAxiosSecure()
 
@@ -65,6 +68,18 @@ const router = createBrowserRouter([
         {
           path : "allUsers",
           element : <AllUser></AllUser>
+        },
+        {
+          path : 'deliveryList',
+          element: <DeliveryList></DeliveryList>
+        },
+        {
+          path : 'reviews',
+          element : <Reviews></Reviews>
+        },
+        {
+          path : 'assign/:id',
+          element : <AssignDeliveryMan></AssignDeliveryMan>
         }
       ]
     }

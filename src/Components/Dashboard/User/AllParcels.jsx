@@ -1,27 +1,21 @@
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import useAuth from "../../Hooks/useAuth";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllParcels = () => {
-    const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
-  const { refetch, data: parcels, } = useQuery({
+  const axiosSecure = useAxiosSecure();
+  const { refetch, data: parcels } = useQuery({
     queryKey: ["parcels"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/bookings`);
-        refetch()
-        return res.data;
+      refetch();
+      return res.data;
     },
   });
 
-  const manageBookigs = (id) =>{
-    console.log('got the id',id);
-  }
-  
-    return (
-        <div>
+  return (
+    <div>
       <Helmet>
         <title>RapidRush || ADMIN </title>
       </Helmet>
@@ -47,16 +41,22 @@ const AllParcels = () => {
             {parcels?.map((parcel, idx) => (
               <tr key={parcel._id}>
                 <th className="bg-gray-300">{idx + 1}</th>
-                <td className="bg-gray-200" >{parcel?.name.toUpperCase()}</td>
+                <td className="bg-gray-200">{parcel?.name.toUpperCase()}</td>
                 <td className="bg-gray-300">{parcel?.phone}</td>
-                <td className="bg-gray-200">{parcel?.bookingDate.split("T")[0]}</td>
-                <td className="text-[#3b0032] text-center bg-gray-300">{parcel?.requestedTime}</td>
-                <td className="text-right text-[#3b0032] text-sm bg-gray-200">{parcel?.price}</td>
-                <td className="text-right text-[#3b0032] text-sm bg-gray-300">{parcel?.status}</td>
                 <td className="bg-gray-200">
-                  <button onClick={()=>manageBookigs(parcel._id)} className="btn btn-xs mr-1">
-                    Manage
-                  </button>
+                  {parcel?.bookingDate.split("T")[0]}
+                </td>
+                <td className="text-[#3b0032] text-center bg-gray-300">
+                  {parcel?.requestedTime}
+                </td>
+                <td className="text-right text-[#3b0032] text-sm bg-gray-200">
+                  {parcel?.price}
+                </td>
+                <td className="text-right text-[#3b0032] text-sm bg-gray-300">
+                  {parcel?.status}
+                </td>
+                <td className="bg-gray-200">
+                  <Link to={`/dashboard/assign/${parcel._id}`}><button className="btn btn-xs">Manage</button></Link>
                 </td>
               </tr>
             ))}
@@ -65,7 +65,7 @@ const AllParcels = () => {
         </table>
       </div>
     </div>
-    );
+  );
 };
 
 export default AllParcels;
