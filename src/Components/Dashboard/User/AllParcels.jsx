@@ -14,6 +14,25 @@ const AllParcels = () => {
     },
   });
 
+  const handleAssign = async(e) =>{
+    e.preventDefault()
+    const form = e.target;
+    const deliveryManID = form.id.value;
+    const deliveryDate = form.date.value;
+    console.log(deliveryManID, deliveryDate);
+    const info = {
+        deliveryManID,
+        deliveryDate
+    }
+    const res = await axiosSecure.patch(`/assign/${id}`, info)
+    console.log(res.data);
+    console.log(res.data);
+    if(res?.data.modifiedCount>0){
+        refetch();
+        navigate('/dashboard/allParcels')
+    }
+  }
+
   return (
     <div>
       <Helmet>

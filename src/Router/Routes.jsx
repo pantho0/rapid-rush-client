@@ -16,9 +16,9 @@ import AllUser from "../Components/Dashboard/User/AllUser";
 import DeliveryList from "../Components/Dashboard/User/DeliveryList";
 import Reviews from "../Components/Dashboard/User/Reviews";
 import AssignDeliveryMan from "../Components/Dashboard/AssignDeliveryMan";
+import useAuth from "../Components/Hooks/useAuth";
 
 const axiosSecure = useAxiosSecure()
-
 const router = createBrowserRouter([
     {
       path: "/",
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
         },
         {
           path : 'deliveryList',
-          element: <DeliveryList></DeliveryList>
+          element: <DeliveryList></DeliveryList>,
         },
         {
           path : 'reviews',

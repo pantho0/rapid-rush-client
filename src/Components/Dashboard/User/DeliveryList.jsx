@@ -18,11 +18,25 @@ const DeliveryList = () => {
   const [deliveryPerson] = deliveryMan;
   console.log(deliveryPerson);
   useEffect(() => {
-    axiosSecure.get(`/deliverList/${deliveryPerson._id}`).then((res) => {
+    axiosSecure.get(`/deliverList/${deliveryPerson?._id}`).then((res) => {
       console.log(res.data);
       setOrders(res.data);
     });
   }, []);
+
+  const cancelOrder = (id) => {
+    axiosSecure.patch(`/deliveryMan/cancel/${id}`)
+    .then(res=>{
+        console.log(res.data);
+    })
+  }
+
+  const confirmOrder = (id) => {
+    axiosSecure.patch(`/deliveryMan/confirm/${id}`)
+    .then(res=>{
+        console.log(res.data);
+    })
+  }
 
   return (
     <div>
@@ -58,10 +72,10 @@ const DeliveryList = () => {
                         <td>{order?.receiverPhone}</td>
                         <td>{order?.receiverAddress}</td>
                         <td>
-                        <button className="btn btn-link">Cancel</button>
+                        <button onClick={()=>cancelOrder(order?._id)} className="btn btn-link">Cancel</button>
                         </td>
                         <td>
-                        <button className="btn btn-link">Sent</button>
+                        <button onClick={()=>confirmOrder(order?._id)} className="btn btn-link">Sent</button>
                         </td>
                       </tr> )
                 }
