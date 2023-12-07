@@ -1,8 +1,33 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { GiDoorway } from "react-icons/gi";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Features = () => {
   const [features, setFeatures] = useState([]);
+  const axiosPublic = useAxiosPublic();
+  const {data:orders=[]} = useQuery({
+      queryKey : ['orders'],
+      queryFn : async()=>{
+        const res = await axiosPublic.get('/bookings')
+        return res.data;
+      }
+  })
+  const {data:users=[]} = useQuery({
+    queryKey : ['users'],
+    queryFn : async()=>{
+      const res = await axiosPublic.get('/users')
+      return res.data;
+    }
+  })
+  const {data:totalDelivery=[]} =useQuery({
+    queryKey : ['totalDelivery'],
+    queryFn : async()=>{
+      const res = await axiosPublic.get("/totalDelivery")
+      return res.data;
+    }
+  })
   useEffect(() => {
     fetch("features.json")
       .then((res) => res.json())
@@ -33,14 +58,14 @@ const Features = () => {
                 <p>{feature.description}</p>
               </div>
               <div className="flex flex-col gap-2">
-                <div className="badge badge-secondary bg-[#3b0032] border-none">
-                  Total Orders:
+                <div className="badge badge-secondary w-full bg-[#3b0032] border-none">
+                  Total Orders: {orders.length}
                 </div>
-                <div className="badge badge-secondary bg-[#3b0032] border-none">
-                  Total Deliveries:
+                <div className="badge badge-secondary w-full bg-[#3b0032] border-none">
+                  Total Deliveries: {totalDelivery.length}
                 </div>
-                <div className="badge badge-secondary bg-[#3b0032] border-none">
-                  Total Users:
+                <div className="badge badge-secondary w-full bg-[#3b0032] border-none">
+                  Total Users: {users.length}
                 </div>
               </div>
             </div>

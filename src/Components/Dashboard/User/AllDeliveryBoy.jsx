@@ -2,18 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const AllUser = () => {
+const AllDeliveryBoy = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+  const { data: deliveryBoys = [], refetch } = useQuery({
+    queryKey: ["deliveryBoys"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/user/role-user");
+      const res = await axiosSecure.get("/user/role-dBoy");
       console.log(res.data);
       return res.data;
     },
   });
-
-  const makeAdmin = (id) => {
+  const makeUser = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -21,26 +20,24 @@ const AllUser = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Make Admin",
+      confirmButtonText: "Make User",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/user/makeAdmin/${id}`).then((res) => {
+        axiosSecure.patch(`/user/makeUser/${id}`).then((res) => {
+          console.log(res.data);
           if (res.data.modifiedCount > 0) {
             refetch();
           }
-          console.log(res.data);
         });
         Swal.fire({
-          title: "Done!",
-          text: "Admin Request Approved",
+          title: "Success!",
+          text: "Request Approved",
           icon: "success",
         });
       }
     });
   };
-
   const makeDboy = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -59,13 +56,12 @@ const AllUser = () => {
         });
         Swal.fire({
           title: "Success!",
-          text: "Your file has been deleted.",
+          text: "Request Approved",
           icon: "success",
         });
       }
     });
   };
-
   return (
     <div>
       <h2 className="text-center text-3xl mt-4 text-[#3b0032]">All users</h2>
@@ -87,66 +83,68 @@ const AllUser = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {users.map((user, idx) => (
-                <tr key={user?._id}>
+              {deliveryBoys.map((deliveryBoy, idx) => (
+                <tr key={deliveryBoy?._id}>
                   <th>{idx + 1}</th>
                   <td>
                     <div className="flex items-center gap-3">
                       <div>
-                        <div className="font-bold">{user?.name}</div>
+                        <div className="font-bold">{deliveryBoy?.name}</div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    {user && user?.phoneNumber
-                      ? user?.phoneNumber
+                    {deliveryBoy && deliveryBoy?.phoneNumber
+                      ? deliveryBoy?.phoneNumber
                       : "Not Found"}
                   </td>
                   <td>
-                    {user && user.totalBooking
-                      ? user.totalBooking
+                    {deliveryBoy && deliveryBoy.totalBooking
+                      ? deliveryBoy.totalBooking
                       : "Not Found"}
                   </td>
                   <td>
-                    {user && user.totalSpent ? user.totalSpent : "Not Found"}
+                    {deliveryBoy && deliveryBoy.totalSpent
+                      ? deliveryBoy.totalSpent
+                      : "Not Found"}
                   </td>
-                  <td>{user?.role.toUpperCase()}</td>
+                  <td>{deliveryBoy?.role.toUpperCase()}</td>
                   <td>
-                    {user && (
+                    {deliveryBoy && (
                       <>
-                        {user.role === "admin" && (
+                        {deliveryBoy.role === "admin" && (
                           <>
                             <button
-                              onClick={() => makeUser(user?._id)}
+                              onClick={() => makeUser(deliveryBoy?._id)}
                               className="btn btn-ghost btn-xs"
                             >
                               Make User
                             </button>
                           </>
                         )}
-                        {user.role === "user" && (
+                        {deliveryBoy.role === "user" && (
                           <>
                             <button
-                              onClick={() => makeAdmin(user?._id)}
+                              onClick={() => makeAdmin(deliveryBoy?._id)}
                               className="btn btn-ghost btn-xs"
                             >
                               Make Admin
                             </button>
                             <button
-                              onClick={() => makeDboy(user?._id)}
+                              onClick={() => makeDboy(deliveryBoy?._id)}
                               className="btn btn-ghost btn-xs"
                             >
                               Delivery Boy
                             </button>
                           </>
                         )}
-                        {user.role === "dBoy" && (
+                        {deliveryBoy.role === "dBoy" && (
                           <>
                             <button className="btn btn-ghost btn-xs">
                               Make Admin
                             </button>
                             <button
-                              onClick={() => makeUser(user?._id)}
+                              onClick={() => makeUser(deliveryBoy?._id)}
                               className="btn btn-ghost btn-xs"
                             >
                               Make User
@@ -166,4 +164,4 @@ const AllUser = () => {
   );
 };
 
-export default AllUser;
+export default AllDeliveryBoy;

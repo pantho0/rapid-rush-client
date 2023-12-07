@@ -101,15 +101,15 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={user?.photoURL}
+                    src={user? user?.photoURL : 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'}
                   />
                 </div>
               </div>
               <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <li disabled>
-                  <button className="justify-between" disabled>
+                <li className="cursor-none" disabled>
+                  <button className="justify-between hover:cursor-text" disabled>
                     {user?.displayName}
-                    <span className="badge">Admin</span>
+                    <span className="badge">Welcome</span>
                   </button>
                 </li>
                 <li>

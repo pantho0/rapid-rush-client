@@ -18,6 +18,8 @@ import Reviews from "../Components/Dashboard/User/Reviews";
 import AssignDeliveryMan from "../Components/Dashboard/AssignDeliveryMan";
 import useAuth from "../Components/Hooks/useAuth";
 import Error from "../Pages/Erro404/Error";
+import AllDeliveryBoy from "../Components/Dashboard/User/AllDeliveryBoy";
+import AdminRoute from "./Private/AdminRoute";
 
 const axiosSecure = useAxiosSecure()
 const router = createBrowserRouter([
@@ -61,11 +63,11 @@ const router = createBrowserRouter([
         },
         {
           path : "profile",
-          element : <Profile></Profile>
+          element : <PrivateRoute><Profile></Profile></PrivateRoute>
         },
         {
           path : "allParcels",
-          element: <AllParcels></AllParcels>
+          element: <PrivateRoute><AllParcels></AllParcels></PrivateRoute>
         },
         {
           path : "allUsers",
@@ -82,6 +84,10 @@ const router = createBrowserRouter([
         {
           path : 'assign/:id',
           element : <AssignDeliveryMan></AssignDeliveryMan>
+        },
+        {
+          path : 'allDeliveryMan',
+          element : <AllDeliveryBoy></AllDeliveryBoy>
         }
       ]
     }
