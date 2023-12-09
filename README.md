@@ -1,8 +1,37 @@
-# React + Vite
+# Rapid Rush - Parcel Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Rapid Rush is a parcel management website built using the MERN stack. It allows users to create profiles, send parcels, and track their status. The system involves an admin who reviews parcels and assigns them to deliverymen. Deliverymen can then view their assigned parcels for delivery.
 
-Currently, two official plugins are available:
+## Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Click here to visit the live site](https://rapidrush-aa644.web.app/)
+
+## Server Repository
+
+[Click here for the server-side repository](https://github.com/pantho0/rapid-rush-server)
+
+## Features
+
+1. **User Profile and Parcel Management:**
+   - Users can create profiles.
+   - Users can send parcels and track their status.
+
+2. **Admin Parcel Assignment:**
+   - Admin reviews each parcel.
+   - Admin assigns parcels to deliverymen.
+
+3. **Deliveryman Dashboard:**
+   - Deliverymen can view their assigned parcels for delivery.
+
+## Technologies Used
+
+- **Frontend:**
+  - React
+  - Firebase (Authentication)
+  - Stripe (Payment Integration)
+
+- **Backend:**
+  - Node.js
+  - Express
+  - MongoDB
+  - Firebase (Authentication and Authorization)
